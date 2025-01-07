@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GrpcContracts\GrpcContracts.csproj" />
+    <ProjectReference Include="..\PayIntentAPI\PayIntentAPI.csproj" />
   </ItemGroup>
 
 </Project>

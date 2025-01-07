@@ -5,6 +5,7 @@ using PayProcessor.Settings;
 using PayProcessor.Services;
 using PayProcessor.Repositories;
 using PaymentGrpcContracts;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,19 +21,12 @@ var awsOption = builder.Configuration.GetAWSOptions();
 builder.Services.AddDefaultAWSOptions(awsOption);
 builder.Services.AddAWSService<IAmazonSQS>();
 builder.Services.Configure<AwsSettings>(builder.Configuration.GetSection("AWS"));
+
+// background listener
 // builder.Services.AddHostedService<SqsListenerService>();
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<IPaymentRepository, PaymentRepository>();
-
-// http 2 grpc
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenLocalhost(5232, listenOptions =>
-    {
-        listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
-    });
-});
 
 var app = builder.Build();
 

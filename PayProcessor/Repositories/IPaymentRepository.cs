@@ -4,7 +4,7 @@ namespace PayProcessor.Repositories
 {
     public interface IPaymentRepository
     {
-        Task<Payment> GetPaymentByIdAsync(Guid id);
+        Task<Payment> GetPaymentByIdAsync(Guid uuid);
         Task CreatePaymentAsync(Payment payment);
 
     }

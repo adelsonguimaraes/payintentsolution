@@ -59,15 +59,14 @@ namespace PaymentIntentAPI.Controller
 
                     var grcpRequest = new PaymentRequest
                     {
-                        Uuid = payment.Uuid.ToString(),
-                        Amount = payment.Status
+                        Uuid = payment.Uuid.ToString()
                     };
 
                     var grpcResponse = await client.GetPaymentDetailsAsync(grcpRequest);
 
                     Console.WriteLine($"Grpc response: {JsonSerializer.Serialize(grpcResponse)}");
 
-                    return Ok(new { uuid = payment.Uuid });
+                    return Ok(new { uuid = payment.Uuid, status = grpcResponse.Status });
                 }
                 else
                 {
