@@ -1,5 +1,8 @@
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace PayProcessor.Models
 {
+    [BsonIgnoreExtraElements]
     public class Payment
     {
         public Guid Uuid { get; set; }

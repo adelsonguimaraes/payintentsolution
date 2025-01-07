@@ -50,16 +50,18 @@ namespace PayProcessor.Services
 
                 if (response.Messages.Count == 0)
                 {
-                    throw new Exception("No messages received from SQS.");
+                    _logger.LogError("No messages received from SQS, resending request.");
+                    return await GetPaymentDetails(request, context); // Return immediately
+                }
+
+                if (_random.NextDouble() < 0.3)
+                {
+                    _logger.LogError("[simulation] Error processing message, resending request.");
+                    return await GetPaymentDetails(request, context); // Return immediately
                 }
 
                 foreach (var message in response.Messages)
                 {
-                    // Simulating random processing error
-                    if (_random.NextDouble() < 0.3)
-                    {
-                        throw new Exception("Simulated random processing failure.");
-                    }
 
                     var payment = JsonSerializer.Deserialize<Payment>(message.Body);
 
@@ -67,9 +69,7 @@ namespace PayProcessor.Services
                     {
                         _logger.LogInformation("Received message: {Message}", message.Body);
 
-                        // Simulating random payment status
                         payment.Status = (_random.NextDouble() < 0.3) ? "Failed" : "Processed";
-
                         await _paymentRepository.CreatePaymentAsync(payment);
 
                         _logger.LogInformation("Payment processed in MongoDB: {PaymentUuid}", payment.Uuid);
@@ -112,5 +112,6 @@ namespace PayProcessor.Services
                 };
             }
         }
+
     }
 }

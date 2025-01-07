@@ -13,7 +13,7 @@ namespace PayProcessor.Repositories
 
         public PaymentRepository(IOptions<MongoDbSettings> mongoDbSettings)
         {
-            BsonSerializer.RegisterSerializer(new GuidSerializer(MongoDB.Bson.GuidRepresentation.CSharpLegacy));
+            BsonSerializer.RegisterSerializer(new GuidSerializer(MongoDB.Bson.GuidRepresentation.Standard));
 
             var mongoClient = new MongoClient(mongoDbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(mongoDbSettings.Value.DatabaseName);
