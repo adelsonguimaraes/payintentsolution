@@ -60,10 +60,17 @@ Projeto de micro serviços feito em ASP.NET Core simulando um Gateway de pagamen
     ```
 
 2. Consulta de Status por Uuid
-    ```http
+    ```bash
     [GET] http://localhost:5233/api/PayProcessor/{uuid}
     ```
 
+3. Swagger
+    ```bash
+    [PayIntentAPI] http://localhost:5041/swagger
+    ```
 
+    ```bash
+    [PayProcessor] http://localhost:5233/swagger
+    ```
 
 
