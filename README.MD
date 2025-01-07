@@ -36,7 +36,7 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
     },
     ```
 
-    Atualizar também o arquivo `PayProcess/appsettings.json`, a chave SQS e MongoDB, nos campos "SqsUrl" e em "ConnectionString".
+    Atualizar também o arquivo `PayProcessor/appsettings.json`, a chave SQS e MongoDB, nos campos "SqsUrl" e em "ConnectionString".
 
     ```json
     "AWS": {
