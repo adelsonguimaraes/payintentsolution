@@ -2,6 +2,9 @@
 
 Projeto de micro serviços feito em ASP.NET Core simulando um Gateway de pagamento.
 
+## Documentação
+Acesse à [Documentação](/Documentation.MD) clicando aqui.
+
 ## Serviços:
 
 ### PayIntentAPI (Producer):
