@@ -61,7 +61,7 @@ Projeto de micro serviços feito em ASP.NET Core simulando um Gateway de pagamen
 
 2. Consulta de Status por Uuid
     ```http
-    [GEI] http://localhost:5233/api/PayProcessor/{uuid}
+    [GET] http://localhost:5233/api/PayProcessor/{uuid}
     ```
 
 
