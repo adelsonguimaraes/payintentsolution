@@ -26,7 +26,31 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
 
 ## Como executar
 
-1. Restore as dependências dos projetos:
+1. Inserir chaves dos serviços AWS e MongoDB
+    Atualizar o arquivo `PayIntentAPI/appsettings.json` a chave de acesso do SQS Aws em "SqsUrl".
+
+    ```json
+    "AWS": {
+        "Region": "us-east-2",
+        "SqsUrl": "https://sqs.."
+    },
+    ```
+
+    Atualizar também o arquivo `PayProcess/appsettings.json`, a chave SQS e MongoDB, nos campos "SqsUrl" e em "ConnectionString".
+
+    ```json
+    "AWS": {
+        "Region": "us-east-2",
+        "SqsUrl": "https://sqs.."
+    },
+    "MongoDB": {
+        "ConnectionString": "mongodb+srv://..",
+        "DatabaseName": "PaymentDB",
+        "CollectionName": "Payments"
+    },
+    ```
+
+2. Restore as dependências dos projetos:
 
     ```bash
     dotnet restore PayItentAPI/
@@ -34,7 +58,7 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
     dotnet restore PayProcessor/
     ```
 
-2. Build os projetos:
+3. Build os projetos:
 
     ```bash
     dotnet build PayItentAPI/
@@ -42,7 +66,7 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
     dotnet build PayIntentSolution/
     ```
 
-3. Inicie os serviços:
+4. Inicie os serviços:
 
     ```bash
     dotnet run --project PayIntentSolution/
