@@ -1,6 +1,12 @@
 # Documentação 
 Neste documento, explico sobre as decisões que tomei na construção de cada recurso, estrutura e arquivo do projeto.
 
+## Documentação por App
+1. [GrpcContracts](GrpcContractsDoc.MD)
+2. [PayIntentAPI](PayIntentAPI.MD)
+3. [PayProcessor](PayProcessor.MD)
+4. [PayTests](PayTests.MD)
+
 ## Estrutura
 
 1. **Solution**: Nas pesquisas que realizei, vi que é muito comum em .NET, quando um sistema tem vários serviços, ser criada uma "Solution" (sln), que fica na pasta raiz e cada APP que vai sendo criado vai sendo adicionado à solução. Entendi como uma boa prática, então utilizei nesse projeto.
