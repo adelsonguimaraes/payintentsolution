@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "PaymentGrpcContracts";
+
+service PaymentService {
+  rpc GetPaymentDetails(PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string uuid = 1;
+}
+
+message PaymentResponse {
+  string uuid = 1;
+  double amount = 2;
+  string currency = 3;
+  string status = 4;
+}

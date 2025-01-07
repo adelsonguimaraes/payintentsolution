@@ -1,0 +1,28 @@
+# Ignore build artifacts
+**/bin/
+**/obj/
+
+# User-specific files
+**/.vscode/
+**/.idea/
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
+
+# Logs
+**/*.log
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider settings
+.idea/
+*.suo
+
+# Database files
+**/*.mdf
+**/*.ldf
+
+# Web server settings
+IISExpress/
