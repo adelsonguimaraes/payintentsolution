@@ -86,7 +86,7 @@ public class PaymentController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreatePaymentIntent([FromBody] PaymentModel payment)
     {
-        # como estamos tipando nosso FromBody com PaymentModel, temos acesso a validação do model usa as configurações do modelo que fizemos
+        # como estamos tipando nosso FromBody com PaymentModel, temos acesso a validação do model que usa as configurações DataAnnotations do modelo que fizemos
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
@@ -114,6 +114,7 @@ public class PaymentController : ControllerBase
             if (sendMessageResponse.HttpStatusCode == System.Net.HttpStatusCode.OK)
             {
                 # se der ok iniciamos uma comunicação GRPC
+                # init grpc client
                 using var channel = GrpcChannel.ForAddress("http://localhost:5232");
                 var client = new PaymentService.PaymentServiceClient(channel);
 
@@ -124,8 +125,7 @@ public class PaymentController : ControllerBase
 
                 # enviamos o Uuid para o nosso Consumer
                 var grpcResponse = await client.GetPaymentDetailsAsync(grcpRequest);
-
-                Console.WriteLine($"Grpc response: {JsonSerializer.Serialize(grpcResponse)}");
+                // end grpc client
 
                 # retornamos a resposta para o cliente http
                 return Ok(new { uuid = payment.Uuid, status = grpcResponse.Status });

@@ -54,6 +54,8 @@ namespace PaymentIntentAPI.Controller
 
                 if (sendMessageResponse.HttpStatusCode == System.Net.HttpStatusCode.OK)
                 {
+
+                    // init grpc client
                     using var channel = GrpcChannel.ForAddress("http://localhost:5232");
                     var client = new PaymentService.PaymentServiceClient(channel);
 
@@ -63,8 +65,8 @@ namespace PaymentIntentAPI.Controller
                     };
 
                     var grpcResponse = await client.GetPaymentDetailsAsync(grcpRequest);
+                    // end grpc client
 
-                    Console.WriteLine($"Grpc response: {JsonSerializer.Serialize(grpcResponse)}");
 
                     return Ok(new { uuid = payment.Uuid, status = grpcResponse.Status });
                 }

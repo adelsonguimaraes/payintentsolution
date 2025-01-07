@@ -3,7 +3,7 @@
 Projeto de micro serviços feito em ASP.NET Core simulando um Gateway de pagamento.
 
 ## Documentação
-Acesse à [Documentação](/Documentation/Documentation.MD) clicando aqui.
+Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
 
 ## Serviços:
 
