@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayIntentAPI", "PayIntentAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayProcessor", "PayProcessor\PayProcessor.csproj", "{56FC8A60-D7CF-4021-8BFB-1C75BC780AFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayTests", "PayTests\PayTests.csproj", "{25822A89-FC0E-4B58-877F-5C18C8DA3446}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcContracts", "GrpcContracts\GrpcContracts.csproj", "{1EC0BCA1-A9AC-479B-9D2E-AE8C75D61B74}"
 EndProject
 Global
@@ -28,10 +26,6 @@ Global
 		{56FC8A60-D7CF-4021-8BFB-1C75BC780AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56FC8A60-D7CF-4021-8BFB-1C75BC780AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56FC8A60-D7CF-4021-8BFB-1C75BC780AFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25822A89-FC0E-4B58-877F-5C18C8DA3446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25822A89-FC0E-4B58-877F-5C18C8DA3446}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25822A89-FC0E-4B58-877F-5C18C8DA3446}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25822A89-FC0E-4B58-877F-5C18C8DA3446}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EC0BCA1-A9AC-479B-9D2E-AE8C75D61B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EC0BCA1-A9AC-479B-9D2E-AE8C75D61B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC0BCA1-A9AC-479B-9D2E-AE8C75D61B74}.Release|Any CPU.ActiveCfg = Release|Any CPU

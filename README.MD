@@ -38,6 +38,7 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
 
     Atualizar também o arquivo `PayProcessor/appsettings.json`, a chave SQS e MongoDB, nos campos "SqsUrl" e em "ConnectionString".
 
+    __Obs__: Importante configurar no servidor do MongoDB o `DataBaseName` e o `CollectionName` como está abaixo, ou atualizar para como está em seu MongoDB.
     ```json
     "AWS": {
         "Region": "us-east-2",
@@ -53,25 +54,22 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
 2. Restore as dependências dos projetos:
 
     ```bash
-    dotnet restore PayItentAPI/
-
-    dotnet restore PayProcessor/
+    dotnet restore PayIntentSolution.sln
     ```
 
 3. Build os projetos:
 
     ```bash
-    dotnet build PayItentAPI/
-
-    dotnet build PayIntentSolution/
+    dotnet build PayIntentSolution.sln
     ```
 
 4. Inicie os serviços:
 
+    __Obs__: Cada serviço deve ser rodado em um terminal distinto.
     ```bash
-    dotnet run --project PayIntentSolution/
+    dotnet run --project ./PayIntentAPI/
 
-    dotnet run --project PayIntentSolution/
+    dotnet run --project ./PayProcessor/
     ```
 
 ## Acesso
@@ -85,6 +83,7 @@ Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
     ```json
     {"amount": 10, "currency": "USD"}
     ```
+    __Obs__: Acompanhe os logs no temrinal, o serviço PayIntentAPI, irá autenticar com a AWS, depois enviará a msg gRPC para o serviço PayProcessor que irá autenticar com a AWS, simular falhas de leitura (caso falhe irá consultar novamente o SQS respeitando o tempo de visualização configurado) e sucesso, registrar no MongoDB e por fim responder a mensagem gRPC.
 
 2. Consulta de Status por Uuid
     ```bash
