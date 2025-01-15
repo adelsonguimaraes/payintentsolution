@@ -5,7 +5,7 @@ Esse é o serviço responsável por fazer o processamento da intenção de pagam
 1. Receber a mensagem via gRPC sobre a intenção de pagamento.
 2. Consultar as intenções de pagamento na fila SQS AWS.
 3. Processar simulando falha de leitura (no knowledge), de forma a processar novamente.
-4. Simular falha de sucesso, resultando em dois possíveis status "Failed" e "ProProcessed".
+4. Simular falha de sucesso, resultando em dois possíveis status "Failed" e "Processed".
 5. Salvar no MongoDB.
 6. Remover da fila SQS.
 7. Responder a mensagem gRPC.
@@ -17,10 +17,12 @@ Alterei essa abordagem para utilizar a mensagem via gRPC e também por ser um al
 
 Nesse ponto tive dúvidas em como aplicar o gRPC mas fiz da forma que apresento aqui, sendo um sinalizador entre o Processor e Consumer quando uma intenção de pagamento é inserida na fila.
 
+Importante dizer que a primeira abordagem `Listener` não vai ser explicada nessa documentação, pois o que está ativa no projeto é a abordagem `gRPC`.
+
 ## Models
 Esse modelo é mais simples que o de PayIntentAPI, não tem as validações.
 
-A novidade aqui é que usamos a anotação `[BsonIgnoreExtraElement]` do MongoDB sinalizando que não aceitamos elementos extras, isso evita erros na hora da consulta de o Mongo querer o campo _id.
+A novidade aqui é que usamos a anotação `[BsonIgnoreExtraElement]` do MongoDB sinalizando que não aceitamos elementos extras, isso evita erros na hora da consulta de o Mongo solicitar o campo _id.
 ```cs
 [BsonIgnoreExtraElements]
 public class Payment{..}

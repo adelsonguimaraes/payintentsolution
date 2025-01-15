@@ -4,10 +4,9 @@ Serviço responsável por receber a intenção de pagamento, gerar um Uuid (Guid
 # Model
 Usei um model para ajudar na serialização dos valores e nas validações de dados.
 
+No construtor da class inicio o Uuid com 
+um Guid, e o status com "pending".
 ```cs
-// No construtor da class inicio o Uuid com 
-// um Guid, e o status com "pending".
-
 public PaymentModel()
 {
     Uuid = Guid.NewGuid();
@@ -15,9 +14,8 @@ public PaymentModel()
 }
 ```
 
+Utilizo `DataAnnotations` para fazer as validações dos campos, assim a validação já fica diretamente no modelo.
 ```cs
-// Utilizo DataAnnotations para fazer as validações dos campos, assim a validação já fica direta no modelo
-
 [Required(ErrorMessage = "Amount is required")]
 [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
     public double Amount { get; set; }
@@ -29,32 +27,37 @@ public string? Currency { get; set; }
 # Program.cs
 Precisamos fazer algumas configurações aqui vamos ver.
 
+Importando `Amazon SQS` e também os `Settings` onde temos nossas classes de configuração.
 ```cs
-// Importando Amazon SQS.
 using Amazon.SQS;
-// Importando também os Settings onde temos nossas classes de configuração.
 using PaymentIntentAPI.Settings;
+```
 
-// Registrando os seviços de Grpc, Controllers, Explorer e Swagger
+Registrando os seviços de `Grpc`, `Controllers`, `Explorer` e `Swagger`.
+```cs
 builder.Services.AddGrpc();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+```
 
-// Configurando a Amazon SQS
+Configurando a `Amazon SQS`.
+```cs
 var awsOptions = builder.Configuration.GetAWSOptions();
 builder.Services.AddDefaultAWSOptions(awsOptions);
 builder.Services.AddAWSService<IAmazonSQS>();
-// Aqui estamos pegando de nosso arquivo "appsettings" as configurações do SQS e registrando em AwsSettings.
+```
+
+Aqui estamos pegando de nosso arquivo "appsettings" as configurações do SQS e registrando em AwsSettings.
+```cs
 builder.Services.Configure<AwsSettings>(builder.Configuration.GetSection("AWS"));
 ```
 
 ## AppSettings
 Dentro de appsettings adicionamos as configurações da nossa AWS.
 
+Esses dados são consumidos no Program.cs para a variável AwsSettings.
 ```json
-// Esses dados são consumidos no Program.cs para a variável AwsSettings.
-
 "AWS": {
     "Region": "us-east-2",
     "SqsUrl": "https://Queue"
@@ -64,9 +67,8 @@ Dentro de appsettings adicionamos as configurações da nossa AWS.
 # Contoller
 Aqui na controller que acontece toda a nossa lógica, recebimento da request, envio para o SQS e comunicação com o serviço de consumer por gRPC.
 
+Configuramos aqui nossa APIController, adicionamos a rota.
 ```cs
-// configuramos aqui nossa APIController, adicionamos a rota.
-
 [ApiController]
 [Route("api/[controller]")]
 public class PaymentController : ControllerBase

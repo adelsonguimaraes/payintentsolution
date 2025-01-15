@@ -5,7 +5,24 @@ Projeto de micro serviços feito em ASP.NET Core simulando um Gateway de pagamen
 ## Documentação
 Acesse à [Documentação](/Documentation/README.MD) clicando aqui.
 
-## Serviços:
+## Recursos
+Recursos utilizados para realização desse desafio.
+
+1. Tecnologias e versões
+    * Dotnet               8.0.404
+    * Google.Protobuf      3.19.1
+    * Grpc                 2.39.1
+    * Grpc.Tools           2.68.1
+
+2. IDE
+    * Visual Studio Code
+
+3. Browser
+    * Chrome
+
+4. Versionador
+    * Git CLI
+    * Serviço GitHub
 
 ### PayIntentAPI (Producer):
 1. Recebe intenção de pagamento por API Post.
